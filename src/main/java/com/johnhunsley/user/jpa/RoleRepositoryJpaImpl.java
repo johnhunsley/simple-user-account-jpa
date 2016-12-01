@@ -3,6 +3,7 @@ package com.johnhunsley.user.jpa;
 import com.johnhunsley.user.domain.Role;
 import com.johnhunsley.user.repository.RoleRepository;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
@@ -13,12 +14,12 @@ import java.util.Collection;
  *         Date : 01/12/2016
  *         Time : 13:42
  */
-@Repository("userRepository")
+@Repository("roleRepository")
 @Profile("jpa")
-public interface RoleRepositoryJpaImpl extends RoleRepository {
+public interface RoleRepositoryJpaImpl extends RoleRepository, CrudRepository<RoleJpaImpl, Long> {
 
     @Override
-    Collection<? extends Role> findAll();
+    Collection<RoleJpaImpl> findAll();
 
     @Override
     void save(Role role);

@@ -17,7 +17,7 @@ public class RoleJpaImpl implements Role {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer Id;
+    private Integer id;
 
     @Basic
     @Column(name = "NAME")
@@ -35,7 +35,7 @@ public class RoleJpaImpl implements Role {
 
     @Override
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     @Override
