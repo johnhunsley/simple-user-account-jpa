@@ -21,6 +21,10 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 /**
+ * <p>
+ *     Spring Boot will automatically initialize HSQLDB as the hsqldb jar is on the class path.
+ *     This database will exist only at runtime for the test as that dependency is test scoped.
+ * </p>
  * @author John Hunsley
  *         jphunsley@gmail.com
  *         Date : 01/12/2016
