@@ -25,8 +25,8 @@ public class UserRestController {
     @Autowired
     private UserRepositoryJpaImpl userRepository;
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public ResponseEntity saveUser(@RequestBody User user) {
+    @RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
+    public ResponseEntity saveUser(@RequestBody UserJpaImpl user) {
         userRepository.save(user);
         return new ResponseEntity(HttpStatus.OK);
     }

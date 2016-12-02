@@ -89,7 +89,7 @@ public class UserRestControllerTest {
 
     @Test
     public void testWriteUser() throws Exception {
-        final String json = "{\"id\":null,\"username\":\"test\",\"password\":\"UxViU7towYwsi5G3zZlzNS3Gkbg=\",\"email\":\"test@tesst\",\"firstName\":\"test\",\"lastName\":\"test\",\"active\":true,\"enabled\":true,\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true}";
+        final String json = "{\"id\":null,\"username\":\"test\",\"password\":\"UxViU7towYwsi5G3zZlzNS3Gkbg=\",\"email\":\"test@tesst\",\"firstName\":\"test\",\"lastName\":\"test\",\"active\":true,\"roles\":[{\"id\":null,\"authority\":\"TEST_ROLE\"}],\"enabled\":true,\"accountNonExpired\":true,\"accountNonLocked\":true,\"credentialsNonExpired\":true}\n";
         mockMvc.perform(put("/user").content(json).contentType("application/json")).andExpect(status().isOk());
 
         User result = userRepository.findByUsername("usernamewrite");

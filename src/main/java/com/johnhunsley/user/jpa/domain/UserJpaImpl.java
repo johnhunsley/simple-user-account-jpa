@@ -3,6 +3,7 @@ package com.johnhunsley.user.jpa.domain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import com.johnhunsley.user.domain.*;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -21,6 +22,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "USER", catalog = "simple-user-account", schema = "")
+@JsonRootName("User")
 public class UserJpaImpl implements User, Serializable {
     private static final long serialVersionUID = 555L;
 
@@ -58,6 +60,7 @@ public class UserJpaImpl implements User, Serializable {
     @JoinColumn(name = "ACCOUNT_ID", nullable = false)
     private AccountJpaImpl account;
 
+    @JsonManagedReference
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", catalog = "simple-user-account", schema = "",
             joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID", nullable = false),
@@ -150,6 +153,7 @@ public class UserJpaImpl implements User, Serializable {
         else this.active = YNEnum.N;
     }
 
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
