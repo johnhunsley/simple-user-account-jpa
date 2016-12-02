@@ -1,6 +1,7 @@
-package com.johnhunsley.user.jpa;
+package com.johnhunsley.user.jpa.repository;
 
 import com.johnhunsley.user.domain.Role;
+import com.johnhunsley.user.jpa.domain.RoleJpaImpl;
 import com.johnhunsley.user.repository.RoleRepository;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.repository.CrudRepository;

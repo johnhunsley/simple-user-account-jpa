@@ -1,10 +1,11 @@
-package com.johnhunsley.user.jpa;
+package com.johnhunsley.user.jpa.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.johnhunsley.user.domain.Account;
 import com.johnhunsley.user.domain.User;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,7 +18,9 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "ACCOUNTS")
-public class AccountJpaImpl implements Account {
+public class AccountJpaImpl implements Account, Serializable {
+    private static final long serialVersionUID = 333L;
+
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)

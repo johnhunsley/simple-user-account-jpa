@@ -1,9 +1,12 @@
-package com.johnhunsley.user.jpa;
+package com.johnhunsley.user.jpa.repository;
 
 import com.johnhunsley.user.domain.Account;
 import com.johnhunsley.user.domain.Role;
 import com.johnhunsley.user.domain.User;
 import com.johnhunsley.user.domain.YNEnum;
+import com.johnhunsley.user.jpa.domain.AccountJpaImpl;
+import com.johnhunsley.user.jpa.domain.RoleJpaImpl;
+import com.johnhunsley.user.jpa.domain.UserJpaImpl;
 import com.johnhunsley.user.repository.AccountRepository;
 import com.johnhunsley.user.repository.RoleRepository;
 import com.johnhunsley.user.repository.UserRepository;
@@ -64,12 +67,14 @@ public class RepositoryJpaIntegrationTest {
         User persistent = userRepository.findByUsername(username);
         assertNotNull(persistent);
         assertTrue(persistent.getId() > 0);
+        System.out.println(persistent.getId());
         assertNotNull(persistent.getAccount());
         assertTrue(persistent.getAccount().getId() > 0);
         assertNotNull(persistent.getAuthorities());
         assertFalse(persistent.getAuthorities().isEmpty());
         assertTrue(persistent.getAuthorities().size() == 1);
         assertTrue(persistent.getAuthorities().iterator().next().getAuthority().equals(roleAuthority));
+
 
     }
 }

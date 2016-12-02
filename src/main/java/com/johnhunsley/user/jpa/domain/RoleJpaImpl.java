@@ -1,8 +1,9 @@
-package com.johnhunsley.user.jpa;
+package com.johnhunsley.user.jpa.domain;
 
 import com.johnhunsley.user.domain.Role;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * @author John Hunsley
@@ -12,7 +13,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "ROLE")
-public class RoleJpaImpl implements Role {
+public class RoleJpaImpl implements Role, Serializable {
+    private static final long serialVersionUID = 444L;
 
     @Id
     @Column(name = "ID")

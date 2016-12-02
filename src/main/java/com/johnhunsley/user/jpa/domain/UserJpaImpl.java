@@ -1,11 +1,13 @@
-package com.johnhunsley.user.jpa;
+package com.johnhunsley.user.jpa.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.johnhunsley.user.domain.*;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Base64;
 import java.util.Collection;
 import java.util.HashSet;
@@ -19,7 +21,8 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "USER", catalog = "simple-user-account", schema = "")
-public class UserJpaImpl implements User {
+public class UserJpaImpl implements User, Serializable {
+    private static final long serialVersionUID = 555L;
 
     @Id
     @Column(name = "ID")
@@ -55,7 +58,6 @@ public class UserJpaImpl implements User {
     @JoinColumn(name = "ACCOUNT_ID", nullable = false)
     private AccountJpaImpl account;
 
-    @JsonManagedReference
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", catalog = "simple-user-account", schema = "",
             joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID", nullable = false),
@@ -187,5 +189,39 @@ public class UserJpaImpl implements User {
     @Override
     public boolean isEnabled() {
         return isActive();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserJpaImpl userJpa = (UserJpaImpl) o;
+
+        if (getId() != null ? !getId().equals(userJpa.getId()) : userJpa.getId() != null) return false;
+        return !(getUsername() != null ? !getUsername().equals(userJpa.getUsername()) : userJpa.getUsername() != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getUsername() != null ? getUsername().hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "UserJpaImpl{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", active=" + active +
+                ", account=" + account +
+                ", roles=" + roles +
+                '}';
     }
 }

@@ -1,6 +1,7 @@
-package com.johnhunsley.user.jpa;
+package com.johnhunsley.user.jpa.repository;
 
 import com.johnhunsley.user.domain.Account;
+import com.johnhunsley.user.jpa.domain.AccountJpaImpl;
 import com.johnhunsley.user.repository.AccountRepository;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.repository.CrudRepository;

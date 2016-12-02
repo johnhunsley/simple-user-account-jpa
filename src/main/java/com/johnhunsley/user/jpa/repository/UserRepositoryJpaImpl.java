@@ -1,9 +1,10 @@
-package com.johnhunsley.user.jpa;
+package com.johnhunsley.user.jpa.repository;
 
 import com.johnhunsley.user.domain.User;
+import com.johnhunsley.user.jpa.domain.UserJpaImpl;
 import com.johnhunsley.user.repository.UserRepository;
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,11 +15,12 @@ import org.springframework.stereotype.Repository;
  */
 @Repository("userRepository")
 @Profile("jpa")
-public interface UserRepositoryJpaImpl extends UserRepository, CrudRepository<UserJpaImpl, Long> {
+public interface UserRepositoryJpaImpl extends UserRepository, JpaRepository<UserJpaImpl, Long> {
 
     @Override
-    User findByUsername(String username);
+    UserJpaImpl findByUsername(String username);
 
     @Override
-    User findById(Long id);
+    UserJpaImpl findById(Long id);
+
 }
