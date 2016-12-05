@@ -17,7 +17,7 @@ import java.util.Set;
  *         Time : 15:09
  */
 @Entity
-@Table(name = "ACCOUNTS")
+@Table(name = "ACCOUNTS", catalog = "simple-user-account", schema = "")
 public class AccountJpaImpl implements Account, Serializable {
     private static final long serialVersionUID = 333L;
 

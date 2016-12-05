@@ -2,12 +2,9 @@ package com.johnhunsley.user.jpa.api;
 
 import com.johnhunsley.user.domain.User;
 import com.johnhunsley.user.jpa.domain.UserJpaImpl;
-import com.johnhunsley.user.jpa.repository.UserRepositoryJpaImpl;
 import com.johnhunsley.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserRestController {
 
     @Autowired
-    private UserRepositoryJpaImpl userRepository;
+    private UserRepository userRepository;
 
     @RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
     public ResponseEntity saveUser(@RequestBody UserJpaImpl user) {
@@ -44,7 +41,7 @@ public class UserRestController {
     @RequestMapping(value = "/page/{pageSize}/{pageNumber}", method = RequestMethod.GET, consumes = "application/json")
     public ResponseEntity<Page> pageMembers(@PathVariable(name = "pageSize") final int pageSize,
                                             @PathVariable(name = "pageNumber") final int pageNumber) {
-        PageRequest request =  new PageRequest(pageNumber - 1, pageSize, Sort.Direction.DESC, "username");
-        return new ResponseEntity<>(userRepository.findAll(request), HttpStatus.OK);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

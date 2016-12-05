@@ -12,7 +12,7 @@ import java.io.Serializable;
  *         Time : 14:43
  */
 @Entity
-@Table(name = "ROLE")
+@Table(name = "ROLE", catalog = "simple-user-account", schema = "")
 public class RoleJpaImpl implements Role, Serializable {
     private static final long serialVersionUID = 444L;
 

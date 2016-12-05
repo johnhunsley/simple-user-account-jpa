@@ -1,6 +1,5 @@
 package com.johnhunsley.user.jpa.api;
 
-import com.johnhunsley.user.Application;
 import com.johnhunsley.user.domain.Account;
 import com.johnhunsley.user.domain.Role;
 import com.johnhunsley.user.domain.User;
@@ -13,15 +12,8 @@ import com.johnhunsley.user.repository.RoleRepository;
 import com.johnhunsley.user.repository.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.autoconfigure.json.JsonTest;
-import org.springframework.boot.test.json.JacksonTester;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -37,11 +29,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  *         Date : 02/12/2016
  *         Time : 14:13
  */
-@JsonTest
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = Application.class)
-@WebAppConfiguration
-@ActiveProfiles(profiles = {"jpa", "integration"})
+//@JsonTest
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringApplicationConfiguration(classes = Application.class)
+//@WebAppConfiguration
+//@ActiveProfiles(profiles = {"jpa", "integration"})
 public class UserRestControllerTest {
 
     @Autowired
