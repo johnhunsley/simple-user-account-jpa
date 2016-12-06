@@ -7,10 +7,11 @@ import com.johnhunsley.user.domain.YNEnum;
 import com.johnhunsley.user.jpa.domain.AccountJpaImpl;
 import com.johnhunsley.user.jpa.domain.RoleJpaImpl;
 import com.johnhunsley.user.jpa.domain.UserJpaImpl;
+import com.johnhunsley.user.jpa.repository.AccountRepositoryJpaImpl;
+import com.johnhunsley.user.jpa.repository.RoleRepositoryJpaImpl;
 import com.johnhunsley.user.jpa.repository.UserRepositoryJpaImpl;
 import com.johnhunsley.user.jpa.repository.UserSpecification;
-import com.johnhunsley.user.repository.AccountRepository;
-import com.johnhunsley.user.repository.RoleRepository;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,13 +56,14 @@ public class RepositoryJpaIntegrationTest {
     private UserRepositoryJpaImpl userRepository;
 
     @Autowired
-    private AccountRepository accountRepository;
+    private AccountRepositoryJpaImpl accountRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
+    private RoleRepositoryJpaImpl roleRepository;
 
     @Before
     public void initData() {
+        cleanup();
         Role role = new RoleJpaImpl(roleAuthority);
         roleRepository.save(role);
 
@@ -74,6 +76,13 @@ public class RepositoryJpaIntegrationTest {
         userRepository.save(user);
         userId = user.getId();
         assertNotNull(userId);
+    }
+
+    @After
+    public void cleanup() {
+        userRepository.delete(userRepository.findAll());
+        accountRepository.delete(accountRepository.findAll());
+        roleRepository.delete(roleRepository.findAll());
     }
 
     @Test

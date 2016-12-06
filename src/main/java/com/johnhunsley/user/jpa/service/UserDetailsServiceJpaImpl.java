@@ -5,6 +5,7 @@ import com.johnhunsley.user.jpa.domain.UserJpaImpl;
 import com.johnhunsley.user.jpa.repository.UserRepositoryJpaImpl;
 import com.johnhunsley.user.jpa.repository.UserSpecification;
 import com.johnhunsley.user.service.UserDetailsServiceImpl;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ import java.util.Collection;
  *         Time : 10:12
  */
 @Service("userDetailsService")
+@Profile("jpa")
 public class UserDetailsServiceJpaImpl extends UserDetailsServiceImpl<UserRepositoryJpaImpl> {
 
     @Override

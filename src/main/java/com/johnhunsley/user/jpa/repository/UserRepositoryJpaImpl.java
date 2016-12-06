@@ -28,7 +28,6 @@ public interface UserRepositoryJpaImpl extends UserRepository,
     @Override
     UserJpaImpl findById(Long id);
 
-
     Page<UserJpaImpl> findByAccount(Account account, Pageable pageable);
 
 }

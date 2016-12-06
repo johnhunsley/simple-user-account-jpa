@@ -3,8 +3,10 @@ package com.johnhunsley.user.jpa.domain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import com.johnhunsley.user.domain.*;
+import com.johnhunsley.user.domain.Account;
+import com.johnhunsley.user.domain.Role;
+import com.johnhunsley.user.domain.User;
+import com.johnhunsley.user.domain.YNEnum;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -20,9 +22,9 @@ import java.util.Set;
  *         Date : 30/11/2016
  *         Time : 12:51
  */
+
 @Entity
 @Table(name = "USER", catalog = "simple-user-account", schema = "")
-@JsonRootName("User")
 public class UserJpaImpl implements User, Serializable {
     private static final long serialVersionUID = 555L;
 
@@ -32,7 +34,7 @@ public class UserJpaImpl implements User, Serializable {
     private Long id;
 
     @Basic
-    @Column(name = "USERNAME")
+    @Column(name = "USERNAME", unique=true)
     private String username;
 
     @Basic
