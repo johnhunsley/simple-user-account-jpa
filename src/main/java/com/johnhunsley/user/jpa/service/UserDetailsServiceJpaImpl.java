@@ -58,6 +58,17 @@ public class UserDetailsServiceJpaImpl extends UserDetailsServiceImpl<UserReposi
         return userRepository.findAll(new UserSpecification(query), request).getContent();
     }
 
+    /**
+     * <p>
+     *     Add the 'account' instance as a query to the builder AND the query value as specified
+     *     in the {@link UserSpecification}
+     * </p>
+     * @param account
+     * @param query
+     * @param pageSize
+     * @param pageNumber
+     * @return
+     */
     @Override
     public Collection<UserJpaImpl> searchAccountUsers(Account account,
                                                       final String query,

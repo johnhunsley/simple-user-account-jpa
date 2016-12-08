@@ -1,2 +1,2 @@
 # simple-user-account-jpa
-JPA Implementation of the simple-user-account API
+Spring Data JPA Implementation of the simple-user-account API
