@@ -34,6 +34,16 @@ import static org.junit.Assert.*;
  * <p>
  *     Spring Boot will automatically initialize HSQLDB as the hsqldb jar is on the class path.
  *     This database will exist only at runtime for the test as that dependency is test scoped.
+ *
+ *     see the following dependency in the pom -
+ *
+ *      <dependency>
+ *          <groupId>org.hsqldb</groupId>
+ *          <artifactId>hsqldb</artifactId>
+ *          <scope>test</scope>
+ *          <optional>true</optional>
+ *      </dependency>
+ *
  * </p>
  * @author John Hunsley
  *         jphunsley@gmail.com
@@ -61,6 +71,9 @@ public class RepositoryJpaIntegrationTest {
     @Autowired
     private RoleRepositoryJpaImpl roleRepository;
 
+    /**
+     * Persist some objects into HSQLDB
+     */
     @Before
     public void initData() {
         cleanup();
@@ -78,6 +91,9 @@ public class RepositoryJpaIntegrationTest {
         assertNotNull(userId);
     }
 
+    /**
+     * Delete the lot
+     */
     @After
     public void cleanup() {
         userRepository.delete(userRepository.findAll());

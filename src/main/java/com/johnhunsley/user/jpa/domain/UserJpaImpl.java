@@ -2,7 +2,6 @@ package com.johnhunsley.user.jpa.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.johnhunsley.user.domain.Account;
 import com.johnhunsley.user.domain.Role;
 import com.johnhunsley.user.domain.User;
@@ -17,10 +16,34 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * <p>
+ *  __________        _________        __________        _________
+ * |          |      |         |      |          |      |         |
+ * | Account  |-----<|  User   |-----<| UserRole |>-----|  Role   |
+ * |__________|      |_________|      |__________|      |_________|
+ *
+ *  Spring Security {@link org.springframework.security.core.userdetails.UserDetails} which are associated
+ *  to an Account and granted {@link GrantedAuthority} which are implemented as Role instances.
+ *
+ * </p>
+ * <p>
+ *     Licensed under the Apache License, Version 2.0 (the "License");
+ *     you may not use this file except in compliance with the License.
+ *     You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *     Unless required by applicable law or agreed to in writing, software
+ *     distributed under the License is distributed on an "AS IS" BASIS,
+ *     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *     See the License for the specific language governing permissions and
+ *     limitations under the License.
+ * </p>
+ *
  * @author John Hunsley
  *         jphunsley@gmail.com
  *         Date : 30/11/2016
- *         Time : 12:51
+ *         Time : 19:51
  */
 
 @Entity
@@ -62,7 +85,6 @@ public class UserJpaImpl implements User, Serializable {
     @JoinColumn(name = "ACCOUNT_ID", nullable = false)
     private AccountJpaImpl account;
 
-    @JsonManagedReference
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", catalog = "simple-user-account", schema = "",
             joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID", nullable = false),
@@ -158,6 +180,11 @@ public class UserJpaImpl implements User, Serializable {
     @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles;
+    }
+
+    @Override
+    public Collection<? extends Role> getRoles() {
         return roles;
     }
 
