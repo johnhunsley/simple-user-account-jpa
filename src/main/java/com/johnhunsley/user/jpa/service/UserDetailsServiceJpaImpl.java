@@ -1,6 +1,7 @@
 package com.johnhunsley.user.jpa.service;
 
 import com.johnhunsley.user.domain.Account;
+import com.johnhunsley.user.domain.Page;
 import com.johnhunsley.user.jpa.domain.UserJpaImpl;
 import com.johnhunsley.user.jpa.repository.UserRepositoryJpaImpl;
 import com.johnhunsley.user.jpa.repository.UserSpecification;
@@ -41,9 +42,10 @@ import java.util.Collection;
 public class UserDetailsServiceJpaImpl extends UserDetailsServiceImpl<UserRepositoryJpaImpl> {
 
     @Override
-    public Collection<UserJpaImpl> pageAllUser(final int pageSize, final int pageNumber) {
+    public Page<UserJpaImpl> pageAllUser(final int pageSize, final int pageNumber) {
         PageRequest request = new PageRequest(pageNumber - 1, pageSize, Sort.Direction.DESC, "username");
-        return userRepository.findAll(request).getContent();
+        org.springframework.data.domain.Page<UserJpaImpl> jpaPage =  userRepository.findAll(request);
+        return new Page(jpaPage.getContent(), jpaPage.getTotalElements(), jpaPage.getTotalPages());
     }
 
     @Override
