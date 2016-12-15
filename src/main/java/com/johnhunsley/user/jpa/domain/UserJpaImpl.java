@@ -47,7 +47,7 @@ import java.util.Set;
  */
 
 @Entity
-@Table(name = "USER", catalog = "simple-user-account", schema = "")
+@Table(name = "USER", catalog = "simpleuseraccount", schema = "")
 public class UserJpaImpl implements User, Serializable {
     private static final long serialVersionUID = 555L;
 
@@ -86,7 +86,7 @@ public class UserJpaImpl implements User, Serializable {
     private AccountJpaImpl account;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", catalog = "simple-user-account", schema = "",
+    @JoinTable(name = "user_role", catalog = "simpleuseraccount", schema = "",
             joinColumns = @JoinColumn(name = "USER_ID", referencedColumnName = "ID", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID", referencedColumnName = "ID", nullable = false))
     private Set<RoleJpaImpl> roles;

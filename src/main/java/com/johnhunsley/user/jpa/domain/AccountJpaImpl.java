@@ -39,7 +39,7 @@ import java.util.Set;
  *         Time : 19:09
  */
 @Entity
-@Table(name = "ACCOUNTS", catalog = "simple-user-account", schema = "")
+@Table(name = "ACCOUNT", catalog = "simpleuseraccount", schema = "")
 public class AccountJpaImpl implements Account, Serializable {
     private static final long serialVersionUID = 333L;
 
@@ -48,6 +48,10 @@ public class AccountJpaImpl implements Account, Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Basic
+    @Column(name = "NAME")
+    private String name;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<UserJpaImpl> users;
@@ -55,6 +59,14 @@ public class AccountJpaImpl implements Account, Serializable {
     @Override
     public Integer getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
