@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -43,5 +45,10 @@ public interface UserRepositoryJpaImpl extends UserRepository,
     UserJpaImpl findById(Long id);
 
     Page<UserJpaImpl> findByAccount(Account account, Pageable pageable);
+
+    @Query("select u from UserJpaImpl u where u.username like concat('%',:queryValue,'%') or u.firstName like concat('%',:queryValue,'%') or u.lastName like concat('%',:queryValue,'%')")
+    Page<UserJpaImpl> searchUsersByName(@Param("queryValue")String queryValue, Pageable pageable);
+
+//    Page<UserJpaImpl> searchAccountUsersByName(String queryValue, Account acocunt, Pageable pageable);
 
 }

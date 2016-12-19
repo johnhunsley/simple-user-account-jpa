@@ -43,21 +43,29 @@ public class UserDetailsServiceJpaImpl extends UserDetailsServiceImpl<UserReposi
 
     @Override
     public Page<UserJpaImpl> pageAllUser(final int pageSize, final int pageNumber) {
-        PageRequest request = new PageRequest(pageNumber - 1, pageSize, Sort.Direction.DESC, "username");
+        PageRequest request = new PageRequest(pageNumber - 1, pageSize, Sort.Direction.ASC, "id");
         org.springframework.data.domain.Page<UserJpaImpl> jpaPage =  userRepository.findAll(request);
         return new Page(jpaPage.getContent(), jpaPage.getTotalElements(), jpaPage.getTotalPages());
     }
 
     @Override
     public Collection<UserJpaImpl> pageAccountUsers(Account account, final int pageSize, final int pageNumber) {
-        PageRequest request = new PageRequest(pageNumber - 1, pageSize, Sort.Direction.DESC, "username");
+        PageRequest request = new PageRequest(pageNumber - 1, pageSize, Sort.Direction.ASC, "id");
         return userRepository.findByAccount(account, request).getContent();
     }
 
     @Override
-    public Collection<UserJpaImpl> searchAllUsers(final String query, final int pageSize, final int pageNumber) {
-        PageRequest request = new PageRequest(pageNumber - 1, pageSize, Sort.Direction.DESC, "username");
-        return userRepository.findAll(new UserSpecification(query), request).getContent();
+    public Page<UserJpaImpl> searchAllUsers(final String query, final int pageSize, final int pageNumber) {
+
+        if(query == null || query.length() < 1) {
+            return pageAllUser(pageSize, pageNumber);
+
+        } else {
+            PageRequest request = new PageRequest(pageNumber - 1, pageSize, Sort.Direction.ASC, "id");
+            org.springframework.data.domain.Page<UserJpaImpl> jpaPage = userRepository.searchUsersByName(query, request);
+            return new Page(jpaPage.getContent(), jpaPage.getTotalElements(), jpaPage.getTotalPages());
+        }
+
     }
 
     /**
@@ -76,7 +84,7 @@ public class UserDetailsServiceJpaImpl extends UserDetailsServiceImpl<UserReposi
                                                       final String query,
                                                       final int pageSize,
                                                       final int pageNumber) {
-        PageRequest request = new PageRequest(pageNumber - 1, pageSize, Sort.Direction.DESC, "username");
+        PageRequest request = new PageRequest(pageNumber - 1, pageSize, Sort.Direction.ASC, "id");
         return userRepository.findAll(new UserSpecification(query) {
 
             @Override
