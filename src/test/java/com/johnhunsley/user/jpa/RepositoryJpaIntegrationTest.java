@@ -1,6 +1,9 @@
 package com.johnhunsley.user.jpa;
 
-import com.johnhunsley.user.domain.*;
+import com.johnhunsley.user.domain.Account;
+import com.johnhunsley.user.domain.Role;
+import com.johnhunsley.user.domain.User;
+import com.johnhunsley.user.domain.YNEnum;
 import com.johnhunsley.user.jpa.domain.AccountJpaImpl;
 import com.johnhunsley.user.jpa.domain.RoleJpaImpl;
 import com.johnhunsley.user.jpa.domain.UserJpaImpl;
@@ -74,14 +77,13 @@ public class RepositoryJpaIntegrationTest {
     @Before
     public void initData() {
         cleanup();
-        Hash hash = new Hash(Hash.SHA1_TYPE);
         Role role = new RoleJpaImpl(roleAuthority);
         roleRepository.save(role);
 
         account = new AccountJpaImpl();
         accountRepository.save(account);
 
-        User user = new UserJpaImpl(username, "jphunsley@gmail.com", "test", "test", YNEnum.Y, hash.hash("password"));
+        User user = new UserJpaImpl(username, "jphunsley@gmail.com", "test", "test", YNEnum.Y, "password".getBytes());
         user.setAccount(account);
         user.addRole(role);
         userRepository.save(user);
