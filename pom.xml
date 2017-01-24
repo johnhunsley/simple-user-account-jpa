@@ -12,7 +12,7 @@
 
     <groupId>com.johnhunsley.user</groupId>
     <artifactId>simple-user-account-jpa</artifactId>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
 
     <dependencies>
 
@@ -31,7 +31,8 @@
         <dependency>
             <groupId>com.github.johnhunsley</groupId>
             <artifactId>simple-user-account</artifactId>
-            <version>1.0</version>
+            <!--<version>1.0</version>-->
+            <version>bde5a49db8</version>
         </dependency>
 
         <!--<dependency>-->
