@@ -32,7 +32,7 @@
             <groupId>com.github.johnhunsley</groupId>
             <artifactId>simple-user-account</artifactId>
             <!--<version>1.0</version>-->
-            <version>bde5a49db8</version>
+            <version>b632ada1cc</version>
         </dependency>
 
         <!--<dependency>-->
