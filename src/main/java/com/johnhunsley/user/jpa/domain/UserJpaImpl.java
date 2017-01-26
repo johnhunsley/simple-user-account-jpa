@@ -1,8 +1,6 @@
 package com.johnhunsley.user.jpa.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.johnhunsley.user.domain.Account;
 import com.johnhunsley.user.domain.Role;
 import com.johnhunsley.user.domain.User;
 import com.johnhunsley.user.domain.YNEnum;
@@ -45,7 +43,6 @@ import java.util.Set;
  *         Date : 30/11/2016
  *         Time : 19:51
  */
-
 @Entity
 @Table(name = "USER", catalog = "simpleuseraccount", schema = "")
 public class UserJpaImpl implements User, Serializable {
@@ -80,10 +77,8 @@ public class UserJpaImpl implements User, Serializable {
     @Column
     private YNEnum active;
 
-    @JsonManagedReference
-    @ManyToOne
-    @JoinColumn(name = "ACCOUNT_ID", nullable = false)
-    private AccountJpaImpl account;
+    @Column(name = "ACCOUNT_ID")
+    private Integer accountId;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", catalog = "simpleuseraccount", schema = "",
@@ -121,14 +116,12 @@ public class UserJpaImpl implements User, Serializable {
         password = new String(base64Hash);
     }
 
-    @Override
-    public Account getAccount() {
-        return account;
+    public Integer getAccountId() {
+        return accountId;
     }
 
-    @Override
-    public void setAccount(Account account) {
-        this.account = (AccountJpaImpl)account;
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
     }
 
     @Override
@@ -253,7 +246,7 @@ public class UserJpaImpl implements User, Serializable {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", active=" + active +
-                ", account=" + account +
+//                ", account=" + account +
                 ", roles=" + roles +
                 '}';
     }

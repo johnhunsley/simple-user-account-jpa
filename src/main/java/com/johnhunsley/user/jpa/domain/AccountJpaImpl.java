@@ -1,6 +1,5 @@
 package com.johnhunsley.user.jpa.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.johnhunsley.user.domain.Account;
 import com.johnhunsley.user.domain.User;
 
@@ -52,8 +51,8 @@ public class AccountJpaImpl implements Account, Serializable {
     @Column(name = "NAME")
     private String name;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany
+    @JoinColumn(name="ACCOUNT_ID", referencedColumnName="ID")
     private Set<UserJpaImpl> users;
 
     @Override

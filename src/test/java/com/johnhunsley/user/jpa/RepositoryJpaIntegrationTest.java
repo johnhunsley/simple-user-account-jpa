@@ -84,7 +84,7 @@ public class RepositoryJpaIntegrationTest {
         accountRepository.save(account);
 
         User user = new UserJpaImpl(username, "jphunsley@gmail.com", "test", "test", YNEnum.Y, "password".getBytes());
-        user.setAccount(account);
+        user.setAccountId(account.getId());
         user.addRole(role);
         userRepository.save(user);
         userId = user.getId();
@@ -107,8 +107,8 @@ public class RepositoryJpaIntegrationTest {
         assertNotNull(persistent);
         assertTrue(persistent.getId().equals(userId));
         System.out.println(persistent.getId());
-        assertNotNull(persistent.getAccount());
-        assertTrue(persistent.getAccount().getId() > 0);
+        assertNotNull(persistent.getAccountId());
+        assertTrue(persistent.getAccountId() > 0);
         assertNotNull(persistent.getAuthorities());
         assertFalse(persistent.getAuthorities().isEmpty());
         assertTrue(persistent.getAuthorities().size() == 1);
@@ -121,8 +121,8 @@ public class RepositoryJpaIntegrationTest {
         assertNotNull(persistent);
         assertTrue(persistent.getId().equals(userId));
         System.out.println(persistent.getId());
-        assertNotNull(persistent.getAccount());
-        assertTrue(persistent.getAccount().getId() > 0);
+        assertNotNull(persistent.getAccountId());
+        assertTrue(persistent.getAccountId() > 0);
         assertNotNull(persistent.getAuthorities());
         assertFalse(persistent.getAuthorities().isEmpty());
         assertTrue(persistent.getAuthorities().size() == 1);
@@ -131,8 +131,8 @@ public class RepositoryJpaIntegrationTest {
 
     @Test
     public void testFindByAccount() {
-        Page<UserJpaImpl> page = userRepository.findByAccount(
-                                            account, new PageRequest(0, 10, Sort.Direction.DESC, "username"));
+        Page<UserJpaImpl> page = userRepository.findByAccountId(
+                account.getId(), new PageRequest(0, 10, Sort.Direction.DESC, "username"));
         assertFalse(page.getContent().isEmpty());
         assertTrue(page.getContent().get(0).getId().equals(userId));
     }
@@ -146,7 +146,7 @@ public class RepositoryJpaIntegrationTest {
     @Test
     public void testQueryAllByValue() {
         User user = new UserJpaImpl("bob", "bob@bob", "bob", "bob", YNEnum.Y, "unhashed".getBytes());
-        user.setAccount(account);
+        user.setAccountId(1);
         userRepository.save(user);
         List<UserJpaImpl> results = userRepository.findAll(new UserSpecification("tes"));
         assertNotNull(results);

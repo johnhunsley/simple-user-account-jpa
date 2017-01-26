@@ -49,9 +49,9 @@ public class UserDetailsServiceJpaImpl extends UserDetailsServiceImpl<UserReposi
     }
 
     @Override
-    public Collection<UserJpaImpl> pageAccountUsers(Account account, final int pageSize, final int pageNumber) {
+    public Collection<UserJpaImpl> pageAccountUsers(Integer accountId, final int pageSize, final int pageNumber) {
         PageRequest request = new PageRequest(pageNumber - 1, pageSize, Sort.Direction.ASC, "id");
-        return userRepository.findByAccount(account, request).getContent();
+        return userRepository.findByAccountId(accountId, request).getContent();
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.johnhunsley.user.jpa.repository;
 
-import com.johnhunsley.user.domain.Account;
 import com.johnhunsley.user.jpa.domain.UserJpaImpl;
 import com.johnhunsley.user.repository.UserRepository;
 import org.springframework.context.annotation.Profile;
@@ -44,7 +43,7 @@ public interface UserRepositoryJpaImpl extends UserRepository,
     @Override
     UserJpaImpl findById(Long id);
 
-    Page<UserJpaImpl> findByAccount(Account account, Pageable pageable);
+    Page<UserJpaImpl> findByAccountId(Integer accountId, Pageable pageable);
 
     @Query("select u from UserJpaImpl u where u.username like concat('%',:queryValue,'%') or u.firstName like concat('%',:queryValue,'%') or u.lastName like concat('%',:queryValue,'%')")
     Page<UserJpaImpl> searchUsersByName(@Param("queryValue")String queryValue, Pageable pageable);
