@@ -1,7 +1,7 @@
 package com.johnhunsley.user.jpa.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.johnhunsley.user.domain.Account;
 import com.johnhunsley.user.domain.Role;
 import com.johnhunsley.user.domain.User;
@@ -80,7 +80,7 @@ public class UserJpaImpl implements User, Serializable {
     @Column
     private YNEnum active;
 
-    @JsonBackReference
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "ACCOUNT_ID", nullable = false)
     private AccountJpaImpl account;
