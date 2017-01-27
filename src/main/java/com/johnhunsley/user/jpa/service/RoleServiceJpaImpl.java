@@ -4,8 +4,10 @@ import com.johnhunsley.user.domain.Page;
 import com.johnhunsley.user.jpa.domain.RoleJpaImpl;
 import com.johnhunsley.user.jpa.repository.RoleRepositoryJpaImpl;
 import com.johnhunsley.user.service.RoleService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 
 /**
  *  <p>
@@ -26,6 +28,8 @@ import org.springframework.data.domain.Sort;
  *         Date : 27/01/2017
  *         Time : 13:36
  */
+@Service("roleService")
+@Profile("jpa")
 public class RoleServiceJpaImpl extends RoleService<RoleRepositoryJpaImpl> {
 
     @Override
