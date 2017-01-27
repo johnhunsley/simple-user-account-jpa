@@ -45,7 +45,7 @@ public class UserDetailsServiceJpaImpl extends UserDetailsServiceImpl<UserReposi
     public Page<UserJpaImpl> pageAllUser(final int pageSize, final int pageNumber) {
         PageRequest request = new PageRequest(pageNumber - 1, pageSize, Sort.Direction.ASC, "id");
         org.springframework.data.domain.Page<UserJpaImpl> jpaPage =  userRepository.findAll(request);
-        return new Page(jpaPage.getContent(), jpaPage.getTotalElements(), jpaPage.getTotalPages());
+        return new Page<>(jpaPage.getContent(), jpaPage.getTotalElements(), jpaPage.getTotalPages());
     }
 
     @Override
@@ -63,7 +63,7 @@ public class UserDetailsServiceJpaImpl extends UserDetailsServiceImpl<UserReposi
         } else {
             PageRequest request = new PageRequest(pageNumber - 1, pageSize, Sort.Direction.ASC, "id");
             org.springframework.data.domain.Page<UserJpaImpl> jpaPage = userRepository.searchUsersByName(query, request);
-            return new Page(jpaPage.getContent(), jpaPage.getTotalElements(), jpaPage.getTotalPages());
+            return new Page<>(jpaPage.getContent(), jpaPage.getTotalElements(), jpaPage.getTotalPages());
         }
 
     }

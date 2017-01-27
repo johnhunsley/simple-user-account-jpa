@@ -31,7 +31,7 @@
         <dependency>
             <groupId>com.github.johnhunsley</groupId>
             <artifactId>simple-user-account</artifactId>
-            <version>4349392590</version>
+            <version>16c83c0e8b</version>
         </dependency>
 
         <!--<dependency>-->

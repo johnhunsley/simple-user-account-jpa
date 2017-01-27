@@ -4,10 +4,10 @@ import com.johnhunsley.user.domain.Role;
 import com.johnhunsley.user.jpa.domain.RoleJpaImpl;
 import com.johnhunsley.user.repository.RoleRepository;
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  * <p>
@@ -31,10 +31,10 @@ import java.util.Collection;
  */
 @Repository("roleRepository")
 @Profile("jpa")
-public interface RoleRepositoryJpaImpl extends RoleRepository, CrudRepository<RoleJpaImpl, Long> {
+public interface RoleRepositoryJpaImpl extends RoleRepository, JpaRepository<RoleJpaImpl, Long> {
 
     @Override
-    Collection<RoleJpaImpl> findAll();
+    List<RoleJpaImpl> findAll();
 
     @Override
     void save(Role role);
