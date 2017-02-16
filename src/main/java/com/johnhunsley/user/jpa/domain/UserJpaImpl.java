@@ -45,7 +45,7 @@ import java.util.Set;
  *         Time : 19:51
  */
 @Entity
-@Table(name = "USER", catalog = "shrewsburyanglers", schema = "")
+@Table(name = "USER", catalog = "simpleuseraccount", schema = "")
 public class UserJpaImpl implements User, Serializable {
     private static final long serialVersionUID = 555L;
 
