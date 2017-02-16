@@ -32,13 +32,15 @@ import java.util.Set;
  *     limitations under the License.
  * </p>
  *
+ * amfrv5ox1agftf0t
+ *
  * @author John Hunsley
  *         jphunsley@gmail.com
  *         Date : 30/11/2016
  *         Time : 19:09
  */
 @Entity
-@Table(name = "ACCOUNT", catalog = "amfrv5ox1agftf0t", schema = "")
+@Table(name = "ACCOUNT", catalog = "shrewsburyanglers", schema = "")
 public class AccountJpaImpl implements Account, Serializable {
     private static final long serialVersionUID = 333L;
 

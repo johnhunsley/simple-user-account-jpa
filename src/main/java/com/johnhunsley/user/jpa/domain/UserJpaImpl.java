@@ -38,13 +38,14 @@ import java.util.Set;
  *     limitations under the License.
  * </p>
  *
+ * catalog = "amfrv5ox1agftf0t
  * @author John Hunsley
  *         jphunsley@gmail.com
  *         Date : 30/11/2016
  *         Time : 19:51
  */
 @Entity
-@Table(name = "USER", catalog = "amfrv5ox1agftf0t", schema = "")
+@Table(name = "USER", catalog = "shrewsburyanglers", schema = "")
 public class UserJpaImpl implements User, Serializable {
     private static final long serialVersionUID = 555L;
 

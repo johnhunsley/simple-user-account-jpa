@@ -28,13 +28,16 @@ import java.io.Serializable;
  *     See the License for the specific language governing permissions and
  *     limitations under the License.
  * </p>
+ *
+ * amfrv5ox1agftf0t
+ *
  * @author John Hunsley
  *         jphunsley@gmail.com
  *         Date : 30/11/2016
  *         Time : 19:43
  */
 @Entity
-@Table(name = "ROLE", catalog = "amfrv5ox1agftf0t", schema = "")
+@Table(name = "ROLE", catalog = "shrewsburyanglers", schema = "")
 public class RoleJpaImpl implements Role, Serializable {
     private static final long serialVersionUID = 444L;
 
